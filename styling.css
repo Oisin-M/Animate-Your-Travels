@@ -1,0 +1,48 @@
+ion-title {
+  text-align: center;
+}
+ion-label {
+  text-align: center;
+}
+ion-row {
+  justify-content: center;
+}
+.row_spaced {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (orientation: portrait) {
+  /* .row_spaced {
+    --min-height: 100px;
+    min-width: 300px;
+    font-size: 30px;
+  } */
+  /* .my-modal {
+    --min-height: 1300px;
+    --min-width: 800px;
+  }
+  .font_up {
+    font-size: 30px;
+  }
+  .picker-opt {
+    font-size: 30px;
+  }
+  .picker-button {
+    font-size: 20px !important;
+  }
+  ion-picker {
+    --min-height: 700px !important;
+    --min-width: 700px !important;
+  } */
+}
+
+@media (orientation: portrait) {
+
+}
+
+#mapcontainer {
+  width:100%;
+}
