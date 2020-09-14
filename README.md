@@ -13,3 +13,4 @@ The Scratch Map allows you to add countries by dropdown or by clicking, and noti
 <img src="https://i.imgur.com/lm3cC4E.png">
 
 I have also built a feature to allow you to animate your travels.
+<img src="https://i.imgur.com/NbbvhuY.gif">
