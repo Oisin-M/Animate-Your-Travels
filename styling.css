@@ -1,3 +1,7 @@
+body {
+  font-family: "Dosis", sans-serif;
+}
+
 ion-title {
   text-align: center;
 }
@@ -7,42 +11,177 @@ ion-label {
 ion-row {
   justify-content: center;
 }
-.row_spaced {
+ion-toast {
+  margin-top: 80px;
+  --background: linear-gradient(to bottom, white 0%, #0099ff 100%);
+  --color: white;
+  font-weight: bold;
+}
+
+.row-spaced {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-@media (orientation: portrait) {
-  /* .row_spaced {
-    --min-height: 100px;
-    min-width: 300px;
-    font-size: 30px;
-  } */
-  /* .my-modal {
-    --min-height: 1300px;
-    --min-width: 800px;
-  }
-  .font_up {
-    font-size: 30px;
-  }
-  .picker-opt {
-    font-size: 30px;
-  }
-  .picker-button {
-    font-size: 20px !important;
-  }
-  ion-picker {
-    --min-height: 700px !important;
-    --min-width: 700px !important;
-  } */
-}
-
-@media (orientation: portrait) {
-
-}
-
 #mapcontainer {
-  width:100%;
+  width: 100%;
+}
+
+#navbar {
+  background: linear-gradient(to bottom, #0099ff 0%, white 100%);
+}
+
+#navbar-text {
+  color: white;
+  height: 60px;
+  font-variant: small-caps;
+  font-size: 25px;
+}
+
+.logo {
+  height: 15px;
+  display: inline;
+}
+
+#share-header {
+  float: right;
+  margin-top: -70px;
+  margin-right: 5px;
+  color: white;
+  font-size: 10px;
+}
+
+#share-link {
+  float: right;
+  margin-top: -55px;
+  margin-right: 10px;
+  color: white;
+  font-size: 10px;
+}
+
+.bottom-toolbar {
+}
+
+#links-header {
+  display: none;
+  margin-left: calc(50% - 95px);
+}
+
+#links {
+  display: none;
+}
+
+@media only screen and (min-width: 375px) {
+  #share-header {
+    float: right;
+    margin-top: -70px;
+    margin-right: 10px;
+    color: white;
+    font-size: 15px;
+  }
+
+  #share-link {
+    float: right;
+    margin-top: -47px;
+    margin-right: 19px;
+    color: white;
+    font-size: 15px;
+  }
+
+  #navbar-text {
+    color: white;
+    height: 60px;
+    font-variant: small-caps;
+    font-size: 30px;
+  }
+
+  .logo {
+    height: 20px;
+    display: inline;
+  }
+}
+
+@media only screen and (min-width: 470px) {
+  #navbar-text {
+    color: white;
+    height: 60px;
+    font-variant: small-caps;
+    font-size: 40px;
+  }
+  .logo {
+    height: 28px;
+    display: inline;
+  }
+
+  #share-header {
+    float: right;
+    margin-top: -70px;
+    margin-right: 10px;
+    color: white;
+    font-size: 17px;
+  }
+
+  #share-link {
+    float: right;
+    margin-top: -47px;
+    margin-right: 19px;
+    color: white;
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 630px) {
+  #navbar-text {
+    color: white;
+    height: 60px;
+    font-variant: small-caps;
+    font-size: 60px;
+  }
+  .logo {
+    height: 36px;
+    display: inline;
+  }
+  #share-header {
+    float: right;
+    margin-top: -70px;
+    margin-right: 10px;
+    color: white;
+    font-size: 20px;
+  }
+
+  #share-link {
+    float: right;
+    margin-top: -47px;
+    margin-right: 19px;
+    color: white;
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 875px) {
+  #links-header {
+    display: inline;
+    float: right;
+    margin-top: -65px;
+    margin-right: 44px;
+    color: white;
+    font-size: 20px;
+  }
+
+  #links {
+    display: inline;
+    float: right;
+    margin-top: -42px;
+    margin-right: 20px;
+    font-size: 20px;
+  }
+
+  #share-link {
+    display: none;
+  }
+
+  #share-header {
+    display: none;
+  }
 }

@@ -2,46 +2,112 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" href="https://i.imgur.com/1iIHVek.png">
-    <title>Scratch Map</title>
+    <link rel="icon" href="icon.png">
+    <title>Animate Your Travels!</title>
     <meta
       name="description"
-      content="An online scratch map with animation feature"
+      content="Animate Your Travels! A user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe"
     />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta property="og:title" content="Animate Your Travels!">
+    <meta property="og:description" content="Animate Your Travels! A user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe">
+    <meta property="og:image" content="https://i.imgur.com/EyJI96f.png">
+    <meta property="og:url" content="https://oisin-m.github.io/Animate-Your-Travels">
+    <meta property="og:site_name" content="Animate Your Travels!">
+    <meta name="twitter:title" content="Animate Your Travels!">
+    <meta name="twitter:description" content="Animate Your Travels! A user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe">
+    <meta name="twitter:image" content="https://i.imgur.com/DotkCHh.png">
+    <meta name="twitter:image:alt" content="Animate Your Travels!">
+    <meta name="twitter:card" content="Animate Your Travels! allows you to view and share all of your voyages with friends much more easily than with a normal travel map. No need to scratch anything off, plus you can see a time-lapse of where you have travelled - and it's all entirely free">
+    <meta itemprop="name" content="Animate Your Travels!">
+    <meta itemprop="description" content="Animate Your Travels! A user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe">
+    <meta itemprop="image" content="https://i.imgur.com/EyJI96f.png">
 
     <script src="highcharts/highcharts.js"></script>
     <script src="highcharts/data.js"></script>
     <script src="highcharts/map.js"></script>
     <script src="highcharts/world-palestine-highres.js"></script>
 
-
     <!-- ionic cdn -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" rel="stylesheet">
 
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap" rel="stylesheet">
+
+    <!-- font-awesome -->
+    <script src="https://kit.fontawesome.com/9e4d0a3149.js" crossorigin="anonymous"></script>
+
   </head>
   <body>
 
-<ion-row>
-    <div id="mapcontainer"></div>
+
+<ion-row title="Navigation" id="navbar">
+  <h1 title="Animate Your Travels Logo" id="navbar-text"><strong>Animate Y<img class="logo" src="icon.png"></img>ur Travels!</strong></h1>
+</ion-row>
+
+<h5 title="Sharebar" id="share-header">Share</h5>
+<h5 title="Share-Link" id="share-link">
+<a href="javascript:void(0);" onclick="openShareBar()"><i class="fa fa-share"></i></a>
+</h5>
+
+<h5 title="Sharebar" id="links-header">Share this!</h5>
+<h5 title="Sharing Links" id="links">
+<a href="https://twitter.com/intent/tweet?url=https://oisin-m.github.io/Animate-Your-Travels/&text=Animate Your Travels! Check out this user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe" target="_blank" data-title="Share on Twitter" data-tags="Tags" title="Share on Twitter" rel="nofollow">
+  <i class="fa fa-twitter"></i>
+</a>
+<a href="https://www.facebook.com/sharer.php?u=https://oisin-m.github.io/Animate-Your-Travels" target="_blank" title="Share on Facebook" rel="nofollow">
+  <i class="fa fa-facebook"></i>
+</a>
+<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://oisin-m.github.io/Animate-Your-Travels" target="_blank" title="Share on LinkedIn" rel="nofollow">
+    <i class="fa fa-linkedin"></i>
+</a>
+<a href="http://reddit.com/submit?url=https://oisin-m.github.io/Animate-Your-Travels&amp;title=Animate Your Travels! Check out this user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe" target="_blank" rel="nofollow">
+    <i class="fa fa-reddit"></i>
+</a>
+<a href="http://www.tumblr.com/share/link?url=https://oisin-m.github.io/Animate-Your-Travels&title=Animate Your Travels! Check out this user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe" target="_blank" rel="nofollow">
+    <i class="fa fa-tumblr"></i>
+</a>
+<a href="whatsapp://send?text=Animate Your Travels! Check out this user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe - https://oisin-m.github.io/Animate-Your-Travels" rel="nofollow">
+  <i class="fa fa-whatsapp"></i>
+</a>
+<a href="https://www.pinterest.com/pin/create/button?url=https://oisin-m.github.io/Animate-Your-Travels&media=https://i.imgur.com/EyJI96f.png&description=Animate Your Travels! Check out this user-friendly online scratch map that allows you to animate and share your travels with friends all around the globe" target="_blank" rel="nofollow">
+  <i class="fa fa-pinterest"></i>
+</a>
+</h5>
+
+<ion-row title="Primary Row">
+    <div title="World Map" id="mapcontainer"></div>
     </div>
 </ion-row>
 
-
-
-  <ion-row id="bottom_toolbar">
-      <ion-item class="row_spaced" button color="secondary" onClick="presentDropdownModal()">
-        <ion-label>Add Via Dropdown</ion-label>
+  <ion-row title="Toolbar" id="bottom-toolbar">
+      <ion-item title="Dropdown to Add Countries" class="row-spaced" button color="secondary" onClick="presentDropdownModal()">
+        <ion-label><strong>Add Via Dropdown</strong></ion-label>
       </ion-item>
-      <ion-item class="row_spaced" button color="secondary" onClick="presentAnimateModal()">
-        <ion-label>Animate Your Travels</ion-label>
+      <ion-item title="Animate Your Travels" class="row-spaced" button color="secondary" onClick="presentAnimateModal()">
+        <ion-label><strong>Animate Your Travels</strong></ion-label>
       </ion-item>
+      <!-- <ion-item class="row-spaced" button color="secondary" onClick="downloadMap()">
+        <ion-label><strong>Download Map</strong></ion-label>
+      </ion-item> -->
   </ion-row>
 
     <script src="app.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styling.css" >
 
-  </body>
+
+  <h2>About « Animate Your Travels! »</h2>
+  <h6>After travelling all around the globe and experimenting with scratch maps, I realised after perhaps one voyage too many that my physical travel logs were rather limiting. I wanted to be able to show people when I had been to specific countries, and to be able to show everyone around the world. Thus, I immediately looked online for scratch/travel map apps of which there were some nice ones, but they all failed to give me the ability to show when I had been to each part of the globe. In the end, I decided to make my own website to let people showcase their travel experiences</h6>
+  <h4>Development and Iterations of the Idea</h4>
+  <h6>I tried a number of mapping, graphing and charting libraries, initially just making basic scratch maps which would let you add individual countries by clicking. I immediately was able to rule some options out - some did not have all the regions I wanted e.g. were only limited to Europe. Once I had limited myself to options that had all the countries in all the major global regions - Africa (with each of Eastern Africa, Middle Africa, Northern Africa, Southern Africa, Western Africa), Asia, the Americas (with each of North America, Central America, South America, The Caribbean), Europe (including Eastern Europe, Baltic States, Scandinavia, British Isles, European Union, Mediterranean), Middle East, and Oceania (including Polynesia). In the end the maps had to be interactive and easily updated so I settled on using Highcharts which had this functionality and all the regions I could possibly need.</h6>
+  <h5>Regions, Countries, Provinces and Territories</h5>
+  <h7>Andorra, United Arab Emirates, Afghanistan, Antigua and Barbuda, Anguilla, Albania, Armenia, Netherlands Antilles, Angola, Antarctica, Argentina, American Samoa, Austria, Australia, Aruba, Azerbaijan, Bosnia and Herzegovina, Barbados, Bangladesh, Belgium, Burkina Faso, Bulgaria, Bahrain, Burundi, Benin, Bermuda, Brunei, Bolivia, Brazil, Bahamas, Bhutan, Bouvet Island, Botswana, Belarus, Belize, Canada, Cocos [Keeling] Islands, Congo [DRC], Central African Republic, Congo [Republic], Switzerland, Côte d'Ivoire, Cook Islands, Chile, Cameroon, China, Colombia, Costa Rica, Cuba, Cape Verde, Christmas Island, Cyprus, Czech Republic, Germany, Djibouti, Denmark, Dominica, Dominican Republic, Algeria, Ecuador, Estonia, Egypt, Western Sahara, Eritrea, Spain, Ethiopia, Finland, Fiji, Falkland Islands [Islas Malvinas], Micronesia, Faroe Islands, France, Gabon, United Kingdom, Grenada, Georgia, French Guiana, Guernsey, Ghana, Gibraltar, Greenland, Gambia, Guinea, Guadeloupe, Equatorial Guinea, Greece, South Georgia and the South Sandwich Islands, Guatemala, Guam, Guinea-Bissau, Guyana, Gaza Strip, Hong Kong, Heard Island and McDonald Islands, Honduras, Croatia, Haiti, Hungary, Indonesia, Ireland, Israel, Isle of Man, India, British Indian Ocean Territory, Iraq, Iran, Iceland, Italy, Jersey, Jamaica, Jordan, Japan, Kenya, Kyrgyzstan, Cambodia, Kiribati, Comoros, Saint Kitts and Nevis, North Korea, South Korea, Kuwait, Cayman Islands, Kazakhstan, Laos, Lebanon, Saint Lucia, Liechtenstein, Sri Lanka, Liberia, Lesotho, Lithuania, Luxembourg, Latvia, Libya, Morocco, Monaco, Moldova, Montenegro, Madagascar, Marshall Islands, Macedonia [FYROM], Mali, Myanmar [Burma], Mongolia, Macau, Northern Mariana Islands, Martinique, Mauritania, Montserrat, Malta, Mauritius, Maldives, Malawi, Mexico, Malaysia, Mozambique, Namibia, New Caledonia, Niger, Norfolk Island, Nigeria, Nicaragua, Netherlands, Norway, Nepal, Nauru, Niue, New Zealand, Oman, Panama, Peru, French Polynesia, Papua New Guinea, Philippines, Pakistan, Poland, Saint Pierre and Miquelon, Pitcairn Islands, Puerto Rico, Palestinian Territories, Portugal, Palau, Paraguay, Qatar, Réunion, Romania, Serbia, Russia, Rwanda, Saudi Arabia, Solomon Islands, Seychelles, Sudan, Sweden, Singapore, Saint Helena, Slovenia, Svalbard and Jan Mayen, Slovakia, Sierra Leone, San Marino, Senegal, Somalia, Suriname, São Tomé and Príncipe, El Salvador, Syria, Swaziland, Turks and Caicos Islands, Chad, French Southern Territories, Togo, Thailand, Tajikistan, Tokelau, Timor-Leste, Turkmenistan, Tunisia, Tonga, Turkey, Trinidad and Tobago, Tuvalu, Taiwan, Tanzania, Ukraine, Uganda, U.S. Minor Outlying Islands, United States, Uruguay, Uzbekistan, Vatican City, Saint Vincent and the Grenadines, Venezuela, British Virgin Islands, U.S. Virgin Islands, Vietnam, Vanuatu, Wallis and Futuna, Samoa, Kosovo, Yemen, Mayotte, South Africa, Zambia, Zimbabwe
+</h7>
+<h6>In the end I have managed to make a scratch map that allows you to animate your travels and share all your voyages with your friends. If there are features or suggestions of any state that would be beneficial to help show and share your voyages around the globe, let me know and I will see how on Earth I can implement them all.</h6>
+
 </html>
