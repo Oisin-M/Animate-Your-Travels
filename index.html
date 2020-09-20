@@ -30,8 +30,6 @@
     <script src="highcharts/map.js"></script>
     <script src="highcharts/world-palestine-highres.js"></script>
 
-    <script src="app.js"></script>
-
     <!-- ionic cdn -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
@@ -98,10 +96,12 @@
       </ion-item> -->
   </ion-row>
 
-    <link rel="stylesheet" href="css/styling.css" >
+  <script src="app.js"></script>
+
+  <link rel="stylesheet" href="css/styling.css" >
 
 
-  <h2>About « Animate Your Travels! »</h2>
+  <h2 class="extra">About « Animate Your Travels! »</h2>
   <h6>After travelling all around the globe and experimenting with scratch maps, I realised after perhaps one voyage too many that my physical travel logs were rather limiting. I wanted to be able to show people when I had been to specific countries, and to be able to show everyone around the world. Thus, I immediately looked online for scratch/travel map apps of which there were some nice ones, but they all failed to give me the ability to show when I had been to each part of the globe. In the end, I decided to make my own website to let people showcase their travel experiences</h6>
   <h4>Development and Iterations of the Idea</h4>
   <h6>I tried a number of mapping, graphing and charting libraries, initially just making basic scratch maps which would let you add individual countries by clicking. I immediately was able to rule some options out - some did not have all the regions I wanted e.g. were only limited to Europe. Once I had limited myself to options that had all the countries in all the major global regions - Africa (with each of Eastern Africa, Middle Africa, Northern Africa, Southern Africa, Western Africa), Asia, the Americas (with each of North America, Central America, South America, The Caribbean), Europe (including Eastern Europe, Baltic States, Scandinavia, British Isles, European Union, Mediterranean), Middle East, and Oceania (including Polynesia). In the end the maps had to be interactive and easily updated so I settled on using Highcharts which had this functionality and all the regions I could possibly need.</h6>
