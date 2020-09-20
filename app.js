@@ -255,6 +255,10 @@ function presentDropdownModal() {
     middleInitial: "N",
   };
 
+  window.dataLayer.push({
+    event: "DropdownModalOpened",
+  });
+
   // present the modal
   document.body.appendChild(modalElement);
 
@@ -338,6 +342,10 @@ function presentAnimateModal() {
     modalElement.cssClass = "my-modal";
 
     document.body.appendChild(modalElement);
+
+    window.dataLayer.push({
+      event: "AnimationModalOpened",
+    });
 
     return modalElement.present();
   }
