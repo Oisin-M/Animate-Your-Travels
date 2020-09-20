@@ -85,8 +85,8 @@ mapChart = plot();
 function sizeChart() {
   if (window.innerHeight > window.innerWidth) {
     mapChart.setSize(
-      ((window.innerHeight - 120 - 50) * 813) / 388.29,
-      window.innerHeight - 120 - 50,
+      ((window.innerHeight - 120 - 80) * 813) / 388.29,
+      window.innerHeight - 120 - 80,
       true
     );
     mapChart.xAxis[0].setExtremes(4558.68, 4558.68 + 3000, false);
