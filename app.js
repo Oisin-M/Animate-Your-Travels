@@ -13,7 +13,7 @@ var data = codes
     return { code: code, value: 0 };
   });
 
-var mapChart = Highcharts.mapChart("mapcontainer", {
+mapChart = Highcharts.mapChart("mapcontainer", {
   chart: {
     scrollablePlotArea: {
       minWidth: 700,
