@@ -256,12 +256,7 @@ function presentDropdownModal() {
   modalElement.setAttribute("id", "modal");
   modalElement.component = "modal-dropdown-page";
   modalElement.cssClass = "my-modal";
-  modalElement.componentProps = {
-    firstName: "Douglas",
-    lastName: "Adams",
-    middleInitial: "N",
-  };
-
+  
   // present the modal
   document.body.appendChild(modalElement);
 
@@ -336,7 +331,7 @@ customElements.define(
 );
 
 function presentAnimateModal() {
-  
+
   const noCountries=mapChart.series[0].data.filter(
     (point) => point.value == 1
   ).length,
