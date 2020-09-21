@@ -187,10 +187,9 @@ customElements.define(
       <ion-label>Countries</ion-label>
     </ion-item-divider>`;
 
-      var unvisited = mapChart.series[0].data.filter(
-        (point) => point.value == 0
-      );
-      var visited = mapChart.series[0].data.filter((point) => point.value == 1);
+      var mapData = mapChart.series[0].data;
+      var unvisited = mapData.filter((point) => point.value == 0);
+      var visited = mapData.filter((point) => point.value == 1);
 
       //visited dropdown
       for (var i = 0; i < visited.length; i++) {
@@ -346,7 +345,7 @@ customElements.define(
   }
 );
 
-function presentAnimateModal() {
+async function presentAnimateModal() {
   let noCountries = mapChart.series[0].data.filter((point) => point.value == 1)
     .length;
 
@@ -384,7 +383,7 @@ async function dismissAnimateModal(modalElement, send_data = true) {
   });
 }
 
-function closeAnimateModal() {
+async function closeAnimateModal() {
   const modalElement = document.getElementById("modal");
   animation_base_data = [];
   const dates = modalElement.getElementsByTagName("input");
@@ -402,7 +401,7 @@ function closeAnimateModal() {
   dismissAnimateModal(modalElement);
 }
 
-function animateButtonOnClick() {
+async function animateButtonOnClick() {
   window.dataLayer.push({
     event: "AnimationClicked",
     countriesSelected: mapChart.series[0].data.filter(
