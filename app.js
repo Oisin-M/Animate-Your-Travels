@@ -331,9 +331,8 @@ customElements.define(
 );
 
 function presentAnimateModal() {
-  const noCountries = mapChart.series[0].data.filter(
-    (point) => point.value == 1
-  ).length;
+  let noCountries = mapChart.series[0].data.filter((point) => point.value == 1)
+    .length;
 
   window.dataLayer.push({
     event: "AnimationOpenModalClick",
