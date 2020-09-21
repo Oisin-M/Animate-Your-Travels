@@ -90,7 +90,6 @@ function sizeChart() {
     mapChart.setSize(window.innerWidth, window.innerHeight - 70 - 80, true);
   }
 }
-
 sizeChart();
 
 Highcharts.wrap(Highcharts.Point.prototype, "select", function (proceed) {
