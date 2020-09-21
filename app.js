@@ -6,12 +6,9 @@ var animation_base_data = [];
 var codes =
   "GL,SH,BU,LK,AS,DK,FO,GU,MP,UM,US,VI,CA,ST,JP,CV,DM,SC,NZ,YE,JM,WS,OM,IN,VC,BD,SB,LC,FR,NR,NO,FM,KN,CN,BH,TO,FI,ID,MU,SE,TT,SW,BR,BS,PW,EC,AU,TV,MH,CL,KI,PH,GD,EE,AG,ES,BB,IT,MT,MV,SP,PG,VU,SG,GB,CY,GR,KM,FJ,RU,VA,SM,AM,AZ,LS,TJ,ML,DZ,TW,UZ,TZ,AR,SA,NL,AE,CH,PT,MY,PA,TR,IR,HT,DO,GW,HR,TH,MX,KW,DE,GQ,CNM,NC,IE,KZ,GE,PL,LT,UG,CD,MK,AL,NG,CM,BJ,TL,TM,KH,PE,MW,MN,AO,MZ,ZA,CR,SV,BZ,CO,KP,KR,GY,HN,GA,NI,ET,SD,SO,GH,CI,SI,GT,BA,JO,SY,WE,IL,EG,ZM,MC,UY,RW,BO,CG,EH,RS,ME,TG,MM,LA,AF,JK,PK,BG,UA,RO,QA,LI,AT,SK,SZ,HU,LY,NE,LU,AD,LR,SL,BN,MR,BE,IQ,GM,MA,TD,KV,LB,SX,DJ,ER,BI,SN,GN,ZW,PY,BY,LV,BT,NA,BF,SS,CF,MD,GZ,KE,BW,CZ,PR,TN,CU,VN,MG,VE,IS,NP,SR,KG";
 
-var data = codes
-  .split(",")
-  .sort()
-  .map(function (code) {
-    return { code: code, value: 0 };
-  });
+var data = codes.split(",").map(function (code) {
+  return { code: code, value: 0 };
+});
 
 mapChart = Highcharts.mapChart("mapcontainer", {
   chart: {
