@@ -102,13 +102,21 @@ Highcharts.wrap(Highcharts.Point.prototype, "select", function (proceed) {
 
   var point = mapChart.getSelectedPoints()[0];
   point.selected = false;
-  console.log(point.selected);
+  console.log(point.name);
 
   var visit = "";
   if (point.value == 0) {
+    window.dataLayer.push({
+      event: "clickMarkAsVisited",
+      country: point.name,
+    });
     visit = "visited";
     point.update(1);
   } else {
+    window.dataLayer.push({
+      event: "clickMarkAsUnvisited",
+      country: point.name,
+    });
     visit = "unvisited";
     point.update(0);
   }
@@ -138,9 +146,17 @@ async function presentUpdatedToast(name, id, visited_string) {
 function updatemap(id) {
   var point = mapChart.series[0].data.filter((point) => point.code == id)[0];
   if (point.value == 0) {
+    window.dataLayer.push({
+      event: "dropdownMarkAsVisited",
+      country: point.name,
+    });
     visit = "visited";
     point.update(1);
   } else {
+    window.dataLayer.push({
+      event: "dropdownMarkAsUnvisited",
+      country: point.name,
+    });
     visit = "unvisited";
     point.update(0);
   }
@@ -264,6 +280,13 @@ function presentDropdownModal() {
 }
 
 async function dismissDropdownModal() {
+  window.dataLayer.push({
+    event: "DropdownCloseModalClick",
+    countriesSelected: mapChart.series[0].data.filter(
+      (point) => point.value == 1
+    ).length,
+  });
+
   const modalElement = document.getElementById("modal");
   await modalElement.dismiss({
     dismissed: true,
@@ -353,7 +376,16 @@ function presentAnimateModal() {
   }
 }
 
-async function dismissAnimateModal(modalElement) {
+async function dismissAnimateModal(modalElement, send_data = true) {
+  if (send_data) {
+    window.dataLayer.push({
+      event: "AnimationCloseModalClick",
+      countriesSelected: mapChart.series[0].data.filter(
+        (point) => point.value == 1
+      ).length,
+    });
+  }
+
   await modalElement.dismiss({
     dismissed: true,
   });
@@ -378,6 +410,13 @@ function closeAnimateModal() {
 }
 
 function animateButtonOnClick() {
+  window.dataLayer.push({
+    event: "AnimationClicked",
+    countriesSelected: mapChart.series[0].data.filter(
+      (point) => point.value == 1
+    ).length,
+  });
+
   const modalElement = document.getElementById("modal");
   animation_base_data = [];
   const dates = modalElement.getElementsByTagName("input");
@@ -398,7 +437,7 @@ function animateButtonOnClick() {
     }
   }
   if (all_submitted == true) {
-    dismissAnimateModal(modalElement);
+    dismissAnimateModal(modalElement, false);
     animate(animation_base_data);
   }
 }
