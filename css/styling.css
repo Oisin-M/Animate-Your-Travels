@@ -41,11 +41,6 @@ ion-toast {
   font-size: 25px;
 }
 
-.logo {
-  height: 15px;
-  display: inline;
-}
-
 #share-header {
   float: right;
   margin-top: -70px;
@@ -72,6 +67,11 @@ ion-toast {
 
 #links {
   display: none;
+}
+
+.logo {
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
 @media only screen and (min-width: 325px) {
@@ -119,8 +119,8 @@ ion-toast {
   }
 
   .logo {
-    height: 20px;
-    display: inline;
+    margin-left: -6px;
+    margin-right: -6px;
   }
 }
 
@@ -131,10 +131,6 @@ ion-toast {
     font-variant: small-caps;
     font-size: 40px;
   }
-  .logo {
-    height: 28px;
-    display: inline;
-  }
 
   #share-header {
     float: right;
@@ -150,6 +146,11 @@ ion-toast {
     margin-right: 19px;
     color: white;
     font-size: 17px;
+  }
+
+  .logo {
+    margin-left: -8px;
+    margin-right: -8px;
   }
 }
 
@@ -160,10 +161,7 @@ ion-toast {
     font-variant: small-caps;
     font-size: 60px;
   }
-  .logo {
-    height: 36px;
-    display: inline;
-  }
+
   #share-header {
     float: right;
     margin-top: -70px;
@@ -178,6 +176,10 @@ ion-toast {
     margin-right: 19px;
     color: white;
     font-size: 20px;
+  }
+  .logo {
+    margin-left: -12px;
+    margin-right: -12px;
   }
 }
 @media only screen and (min-width: 875px) {

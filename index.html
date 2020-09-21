@@ -55,7 +55,19 @@
 
 
 <ion-row title="Navigation" id="navbar">
-  <h1 title="Animate Your Travels Logo" id="navbar-text"><strong>Animate Y<img class="logo" src="icon.png" alt="Animate Your Travels! Logo"></img>ur Travels!</strong></h1>
+  <h1 title="Animate Your Travels Logo" id="navbar-text"><strong>Animate Y
+        <picture alt="Animate Your Travels! Logo"  class="logo">
+          <source srcset="icon-fullscreen.webp" media="(min-width: 630px)" />
+          <source srcset="icon-fullscreen.png" media="(min-width: 630px)" />
+          <source srcset="icon-large.webp" media="(min-width: 470px)" />
+          <source srcset="icon-large.png" media="(min-width: 470px)" />
+          <source srcset="icon-medium.webp" media="(min-width: 375px)" />
+          <source srcset="icon-medium.png" media="(min-width: 375px)" />
+          <source srcset="icon-small.webp" />
+          <img src="icon-small.png" />
+        </picture>
+    ur Travels!</strong>
+  </h1>
 </ion-row>
 
 <h5 title="Sharebar" id="share-header">Share</h5>
