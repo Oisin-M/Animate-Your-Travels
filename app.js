@@ -13,74 +13,69 @@ var data = codes
     return { code: code, value: 0 };
   });
 
-const plot = () => {
-  mapChart = Highcharts.mapChart("mapcontainer", {
-    chart: {
-      scrollablePlotArea: {
-        minWidth: 700,
-        minHeight: 500,
-      },
+mapChart = Highcharts.mapChart("mapcontainer", {
+  chart: {
+    scrollablePlotArea: {
+      minWidth: 700,
+      minHeight: 500,
     },
-    title: {
-      text: "",
+  },
+  title: {
+    text: "",
+  },
+  legend: {
+    itemDistance: 100,
+    align: "left",
+  },
+  mapNavigation: {
+    enabled: true,
+    buttonOptions: {
+      verticalAlign: "middle",
     },
-    legend: {
-      itemDistance: 100,
-      align: "left",
-    },
-    mapNavigation: {
-      enabled: true,
-      buttonOptions: {
-        verticalAlign: "middle",
-      },
-    },
-    colorAxis: {
-      dataClasses: [
-        {
-          from: 0,
-          to: 0,
-          name: "Unvisited",
-          color: "#0099ff",
-        },
-        {
-          from: 1,
-          to: 1,
-          name: "Visited",
-          color: "#000099",
-        },
-      ],
-    },
-    series: [
+  },
+  colorAxis: {
+    dataClasses: [
       {
-        data: data,
-        mapData: Highcharts.maps["custom/world-palestine-highres"],
-        joinBy: ["iso-a2", "code"],
-        name: "ScratchMap",
-        allowPointSelect: true,
-        cursor: "pointer",
-        tooltip: {
-          headerFormat: "",
-          pointFormat: "<h3><b>{point.name} ({point.code})</b></h3>",
-        },
+        from: 0,
+        to: 0,
+        name: "Unvisited",
+        color: "#0099ff",
+      },
+      {
+        from: 1,
+        to: 1,
+        name: "Visited",
+        color: "#000099",
       },
     ],
-    plotOptions: {
-      series: {
-        states: {
-          hover: {
-            enabled: "#99ff99",
-          },
-          select: {
-            color: "#00FFFFFF",
-          },
+  },
+  series: [
+    {
+      data: data,
+      mapData: Highcharts.maps["custom/world-palestine-highres"],
+      joinBy: ["iso-a2", "code"],
+      name: "ScratchMap",
+      allowPointSelect: true,
+      cursor: "pointer",
+      tooltip: {
+        headerFormat: "",
+        pointFormat: "<h3><b>{point.name} ({point.code})</b></h3>",
+      },
+    },
+  ],
+  plotOptions: {
+    series: {
+      states: {
+        hover: {
+          enabled: "#99ff99",
+        },
+        select: {
+          color: "#00FFFFFF",
         },
       },
     },
-  });
-  return mapChart;
-};
-
-mapChart = plot();
+  },
+});
 
 function sizeChart() {
   if (window.innerHeight > window.innerWidth) {
@@ -106,29 +101,26 @@ Highcharts.wrap(Highcharts.Point.prototype, "select", function (proceed) {
 
   var visit = "";
   if (point.value == 0) {
+    visit = "visited";
+    presentUpdatedToast(point.name, point.code, visit);
+    point.update(1);
     window.dataLayer.push({
       event: "clickMarkAsVisited",
       country: point.name,
     });
-    visit = "visited";
-    point.update(1);
   } else {
+    visit = "unvisited";
+    presentUpdatedToast(point.name, point.code, visit);
+    point.update(0);
     window.dataLayer.push({
       event: "clickMarkAsUnvisited",
       country: point.name,
     });
-    visit = "unvisited";
-    point.update(0);
   }
-  presentUpdatedToast(point.name, point.code, visit);
 });
 
 window.onresize = sizeChart;
 // </MAP CODE>
-
-// <DOWNLOAD MAP CODE>
-function downloadMap() {}
-// </DOWNLOAD MAP CODE>
 
 // <UPDATE TOAST CODE>
 async function presentUpdatedToast(name, id, visited_string) {
@@ -146,21 +138,22 @@ async function presentUpdatedToast(name, id, visited_string) {
 function updatemap(id) {
   var point = mapChart.series[0].data.filter((point) => point.code == id)[0];
   if (point.value == 0) {
+    visit = "visited";
+    presentUpdatedToast(point.name, point.code, visit);
+    point.update(1);
     window.dataLayer.push({
       event: "dropdownMarkAsVisited",
       country: point.name,
     });
-    visit = "visited";
-    point.update(1);
   } else {
+    visit = "unvisited";
+    presentUpdatedToast(point.name, point.code, visit);
+    point.update(0);
     window.dataLayer.push({
       event: "dropdownMarkAsUnvisited",
       country: point.name,
     });
-    visit = "unvisited";
-    point.update(0);
   }
-  presentUpdatedToast(point.name, point.code, visit);
 }
 
 customElements.define(
