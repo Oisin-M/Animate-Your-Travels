@@ -244,6 +244,13 @@ customElements.define(
 );
 
 function presentDropdownModal() {
+  window.dataLayer.push({
+    event: "DropdownOpenModalClick",
+    countriesSelected: mapChart.series[0].data.filter(
+      (point) => point.value == 1
+    ).length,
+  });
+
   // create the modal with the `modal-page` component
   const modalElement = document.createElement("ion-modal");
   modalElement.setAttribute("id", "modal");
@@ -254,10 +261,6 @@ function presentDropdownModal() {
     lastName: "Adams",
     middleInitial: "N",
   };
-
-  window.dataLayer.push({
-    event: "DropdownModalOpened",
-  });
 
   // present the modal
   document.body.appendChild(modalElement);
@@ -333,7 +336,17 @@ customElements.define(
 );
 
 function presentAnimateModal() {
-  if (mapChart.series[0].data.filter((point) => point.value == 1).length == 0) {
+  
+  const noCountries=mapChart.series[0].data.filter(
+    (point) => point.value == 1
+  ).length,
+
+  window.dataLayer.push({
+    event: "AnimationOpenModalClick",
+    countriesSelected: noCountries,
+  });
+
+  if (noCountries == 0) {
     presentNoDataToast();
   } else {
     const modalElement = document.createElement("ion-modal");
@@ -342,10 +355,6 @@ function presentAnimateModal() {
     modalElement.cssClass = "my-modal";
 
     document.body.appendChild(modalElement);
-
-    window.dataLayer.push({
-      event: "AnimationModalOpened",
-    });
 
     return modalElement.present();
   }
