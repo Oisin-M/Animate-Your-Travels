@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oisin-m.github.io/Animate-Your-Travels/sitemap.xml
