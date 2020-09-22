@@ -7,11 +7,7 @@ import "./highcharts/map.js";
 import "./highcharts/world-palestine-highres.js";
 
 window.presentDropdownModal = presentDropdownModal;
-window.dismissDropdownModal = dismissDropdownModal;
-window.updatemap = updatemap;
 window.presentAnimateModal = presentAnimateModal;
-window.closeAnimateModal = closeAnimateModal;
-window.animateButtonOnClick = animateButtonOnClick;
 
 // <MAP CODE>
 var codes =
@@ -101,55 +97,29 @@ function sizeChart() {
 
 sizeChart();
 
-Highcharts.wrap(Highcharts.Point.prototype, "select", function (proceed) {
+Highcharts.wrap(Highcharts.Point.prototype, "select", async function (proceed) {
   proceed.apply(this, Array.prototype.slice.call(arguments, 1));
 
   var point = mapChart.getSelectedPoints()[0];
   point.selected = false;
   console.log(point.name);
 
-  var visit = "";
-  if (point.value == 0) {
-    visit = "visited";
-    presentUpdatedToast(point.name, point.code, visit);
-    point.update(1);
-    window.dataLayer.push({
-      event: "clickMarkAsVisited",
-      country: point.name,
-    });
-  } else {
-    visit = "unvisited";
-    presentUpdatedToast(point.name, point.code, visit);
-    point.update(0);
-    window.dataLayer.push({
-      event: "clickMarkAsUnvisited",
-      country: point.name,
-    });
-  }
+  let test = await import("./clickMap.js");
+  test.clickMap(proceed, point);
 });
 
 window.onresize = sizeChart;
 // </MAP CODE>
 
-// <UPDATE TOAST CODE>
-async function presentUpdatedToast(name, id, visited_string) {
-  const toast = document.createElement("ion-toast");
-  toast.message = "Marked " + name + " (" + id + ") as " + visited_string;
-  toast.duration = 2000;
-  toast.position = "top";
-
-  document.body.appendChild(toast);
-  return toast.present();
-}
-// </UPDATE TOAST CODE>
-
 // <DROPDOWN MODAL>
-function updatemap(id) {
+async function updatemap(id) {
+  let toast = await import("./presentUpdatedToast.js");
+
   var point = mapChart.series[0].data.filter((point) => point.code == id)[0];
   var visit;
   if (point.value == 0) {
     visit = "visited";
-    presentUpdatedToast(point.name, point.code, visit);
+    toast.presentUpdatedToast(point.name, point.code, visit);
     point.update(1);
     window.dataLayer.push({
       event: "dropdownMarkAsVisited",
@@ -157,7 +127,7 @@ function updatemap(id) {
     });
   } else {
     visit = "unvisited";
-    presentUpdatedToast(point.name, point.code, visit);
+    toast.presentUpdatedToast(point.name, point.code, visit);
     point.update(0);
     window.dataLayer.push({
       event: "dropdownMarkAsUnvisited",
@@ -271,6 +241,11 @@ function presentDropdownModal() {
     ).length,
   });
 
+  if (!window.dismissDropdownModal) {
+    window.dismissDropdownModal = dismissDropdownModal;
+    window.updatemap = updatemap;
+  }
+
   // create the modal with the `modal-page` component
   const modalElement = document.createElement("ion-modal");
   modalElement.setAttribute("id", "modal");
@@ -365,6 +340,11 @@ async function presentAnimateModal() {
     event: "AnimationOpenModalClick",
     countriesSelected: noCountries,
   });
+
+  if (!window.closeAnimateModal) {
+    window.closeAnimateModal = closeAnimateModal;
+    window.animateButtonOnClick = animateButtonOnClick;
+  }
 
   if (noCountries == 0) {
     presentNoDataToast();
