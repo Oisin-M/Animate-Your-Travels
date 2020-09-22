@@ -323,7 +323,8 @@ async function presentAnimateModal() {
   });
 
   if (noCountries == 0) {
-    presentNoDataToast();
+    let nodatattoast = await import("./presentNoDataToast.js");
+    nodatattoast.presentNoDataToast();
   } else {
     if (!window.closeAnimateModal) {
       let closeAnimateModal = await import("./closeAnimateModal.js");
@@ -374,7 +375,8 @@ async function animateButtonOnClick() {
     var date = dates[i].value.substring(0, 7).split("-");
     if (date.length == 1) {
       if (all_submitted == true) {
-        presentInvalidToast();
+        let invalidtoast = await import("./presentInvalidToast.js");
+        invalidtoast.presentInvalidToast();
         all_submitted = false;
       }
     } else {
@@ -390,28 +392,6 @@ async function animateButtonOnClick() {
   }
 }
 // </ANIMATE MODAL>
-
-// <INVALID DATE TOAST>
-async function presentInvalidToast() {
-  const toast = document.createElement("ion-toast");
-  toast.message = "Invalid data submitted. Please give each country a date.";
-  toast.duration = 2000;
-  toast.position = "top";
-
-  document.body.appendChild(toast);
-  return toast.present();
-}
-
-async function presentNoDataToast() {
-  const toast = document.createElement("ion-toast");
-  toast.message = "No countries have been selected.";
-  toast.duration = 2000;
-  toast.position = "top";
-
-  document.body.appendChild(toast);
-  return toast.present();
-}
-// </INVALID DATE TOAST>
 
 // <ANIMATION CODE>
 
