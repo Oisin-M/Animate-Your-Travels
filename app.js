@@ -113,27 +113,8 @@ window.onresize = sizeChart;
 
 // <DROPDOWN MODAL>
 async function updatemap(id) {
-  let toast = await import("./presentUpdatedToast.js");
-
-  var point = mapChart.series[0].data.filter((point) => point.code == id)[0];
-  var visit;
-  if (point.value == 0) {
-    visit = "visited";
-    toast.presentUpdatedToast(point.name, point.code, visit);
-    point.update(1);
-    window.dataLayer.push({
-      event: "dropdownMarkAsVisited",
-      country: point.name,
-    });
-  } else {
-    visit = "unvisited";
-    toast.presentUpdatedToast(point.name, point.code, visit);
-    point.update(0);
-    window.dataLayer.push({
-      event: "dropdownMarkAsUnvisited",
-      country: point.name,
-    });
-  }
+  let updateMap = await import("./updateMap.js");
+  updateMap.updateMap(id, mapChart);
 }
 
 customElements.define(
@@ -341,14 +322,14 @@ async function presentAnimateModal() {
     countriesSelected: noCountries,
   });
 
-  if (!window.closeAnimateModal) {
-    window.closeAnimateModal = closeAnimateModal;
-    window.animateButtonOnClick = animateButtonOnClick;
-  }
-
   if (noCountries == 0) {
     presentNoDataToast();
   } else {
+    if (!window.closeAnimateModal) {
+      window.closeAnimateModal = closeAnimateModal;
+      window.animateButtonOnClick = animateButtonOnClick;
+    }
+
     const modalElement = document.createElement("ion-modal");
     modalElement.setAttribute("id", "modal");
     modalElement.component = "modal-animation-page";
