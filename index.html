@@ -105,10 +105,10 @@
 </ion-row>
 
   <ion-row title="Toolbar" id="bottom-toolbar">
-      <ion-item title="Dropdown to Add Countries" class="row-spaced" button color="secondary" onClick="presentDropdownModal()">
+      <ion-item id="DropdownButton" title="Dropdown to Add Countries" class="row-spaced" button color="secondary" onClick="presentDropdownModal()">
         <ion-label><strong>Add Via Dropdown</strong></ion-label>
       </ion-item>
-      <ion-item title="Animate Your Travels" class="row-spaced" button color="secondary" onClick="presentAnimateModal()">
+      <ion-item id="AnimateButton" title="Animate Your Travels" class="row-spaced" button color="secondary" onClick="presentAnimateModal()">
         <ion-label><strong>Animate Your Travels</strong></ion-label>
       </ion-item>
       <!-- <ion-item class="row-spaced" button color="secondary" onClick="downloadMap()">
@@ -129,20 +129,21 @@
 
 <link async href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" rel="stylesheet">
 
-<script src="highcharts/highcharts.js"></script>
-<script src="highcharts/map.js"></script>
 <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/maps/modules/map.js"></script>
 <script async src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
 <!-- <script async src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script> -->
-<script src="highcharts/world-palestine-highres.js"></script>
+
+<!-- <script src="highcharts/highcharts.js"></script>
+<script src="highcharts/map.js"></script> -->
+<!-- <script src="highcharts/world-palestine-highres.js"></script> -->
 
 
 <!-- ionic cdn -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
 <!-- <script async nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script> -->
 
-<script async src="app.js"></script>
+<script type="module" src="app.js"></script>
 
 <!-- fonts -->
 <link async href="https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap" rel="stylesheet">
