@@ -217,9 +217,9 @@ customElements.define(
 function presentDropdownModal() {
   window.dataLayer.push({
     event: "DropdownOpenModalClick",
-    countriesSelected: mapChart.series[0].data.filter(
-      (point) => point.value == 1
-    ).length,
+    // countriesSelected: mapChart.series[0].data.filter(
+    //   (point) => point.value == 1
+    // ).length,
   });
 
   if (!window.dismissDropdownModal) {
@@ -242,9 +242,9 @@ function presentDropdownModal() {
 async function dismissDropdownModal() {
   window.dataLayer.push({
     event: "DropdownCloseModalClick",
-    countriesSelected: mapChart.series[0].data.filter(
-      (point) => point.value == 1
-    ).length,
+    // countriesSelected: mapChart.series[0].data.filter(
+    //   (point) => point.value == 1
+    // ).length,
   });
 
   const modalElement = document.getElementById("modal");
@@ -319,14 +319,15 @@ async function presentAnimateModal() {
 
   window.dataLayer.push({
     event: "AnimationOpenModalClick",
-    countriesSelected: noCountries,
+    // countriesSelected: noCountries,
   });
 
   if (noCountries == 0) {
     presentNoDataToast();
   } else {
     if (!window.closeAnimateModal) {
-      window.closeAnimateModal = closeAnimateModal;
+      let closeAnimateModal = await import("./closeAnimateModal.js");
+      window.closeAnimateModal = closeAnimateModal.closeAnimateModal;
       window.animateButtonOnClick = animateButtonOnClick;
     }
 
@@ -345,33 +346,15 @@ async function dismissAnimateModal(modalElement, send_data = true) {
   if (send_data) {
     window.dataLayer.push({
       event: "AnimationCloseModalClick",
-      countriesSelected: mapChart.series[0].data.filter(
-        (point) => point.value == 1
-      ).length,
+      // countriesSelected: mapChart.series[0].data.filter(
+      //   (point) => point.value == 1
+      // ).length,
     });
   }
 
   await modalElement.dismiss({
     dismissed: true,
   });
-}
-
-async function closeAnimateModal() {
-  const modalElement = document.getElementById("modal");
-  animation_base_data = [];
-  const dates = modalElement.getElementsByTagName("input");
-  const vals = modalElement.getElementsByClassName("animate_labels");
-  for (var i = 0; i < dates.length; i++) {
-    var date = dates[i].value.substring(0, 7).split("-");
-    if (date.length == 1) {
-    } else {
-      animation_base_data.push([
-        vals[i].textContent.split("(")[1].substring(0, 2),
-        date,
-      ]);
-    }
-  }
-  dismissAnimateModal(modalElement);
 }
 
 async function animateButtonOnClick() {
@@ -438,25 +421,9 @@ function animate(initial_animation_data) {
   progBar();
 }
 
-function progBar() {
-  if (document.getElementsByTagName("ion-progress-bar").length == 0) {
-    var progBar = document.createElement("ion-progress-bar");
-    progBar.value = 0;
-    const toolbar = document.getElementById("bottom-toolbar");
-    toolbar.insertBefore(progBar, toolbar.childNodes[0]);
-  } else {
-    progBar = document.getElementsByTagName("ion-progress-bar")[0];
-    progBar.value = 0;
-  }
-
-  setTimeout(updateProgBar, initial_timeout, progBar);
-}
-
-function updateProgBar(progBar) {
-  progBar.value += 1 / 50;
-  if (progBar.value < 1) {
-    setTimeout(updateProgBar, animation_length / 50, progBar);
-  }
+async function progBar() {
+  let progbar = await import("./progBar.js");
+  progbar.progBar();
 }
 
 function resetMap(initial_animation_data) {
