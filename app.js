@@ -186,8 +186,10 @@ customElements.define(
     </ion-item-divider>`;
 
       var mapData = mapChart.series[0].data;
-      var unvisited = mapData.filter((point) => point.value == 0);
-      var visited = mapData.filter((point) => point.value == 1);
+      const [visited, unvisited] = mapData.reduce(
+        ([p, f], e) => (e.value == 1 ? [[...p, e], f] : [p, [...f, e]]),
+        [[], []]
+      );
 
       //visited dropdown
       for (var i = 0; i < visited.length; i++) {
