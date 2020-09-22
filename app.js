@@ -1,5 +1,3 @@
-var animation_length = 7000;
-var initial_timeout = 1000;
 var animation_base_data = [];
 
 import "./highcharts/highcharts.js";
@@ -388,48 +386,11 @@ async function animateButtonOnClick() {
   }
   if (all_submitted == true) {
     dismissAnimateModal(modalElement, false);
-    animate(animation_base_data);
+    let anim = await import("./animate.js");
+    anim.animate(animation_base_data, mapChart);
   }
 }
 // </ANIMATE MODAL>
-
-// <ANIMATION CODE>
-
-async function animate(initial_animation_data) {
-  resetMap(initial_animation_data);
-  let getAnimationData = await import("./getAnimationData.js");
-  var animation_data = getAnimationData.getAnimationData(
-    initial_animation_data
-  );
-  setTimeout(playAnimation, initial_timeout, animation_data, 0);
-  progBar();
-}
-
-async function progBar() {
-  let progbar = await import("./progBar.js");
-  progbar.progBar();
-}
-
-function resetMap(initial_animation_data) {
-  for (var i = 0; i < initial_animation_data.length; i++) {
-    var id = initial_animation_data[i][0];
-    mapChart.series[0].data.filter((point) => point.code == id)[0].update(0);
-  }
-}
-
-function playAnimation(data, index) {
-  var id = data[index][0];
-  mapChart.series[0].data.filter((point) => point.code == id)[0].update(1);
-  if (index < data.length - 1) {
-    setTimeout(
-      playAnimation,
-      data[index + 1][1] - data[index][1],
-      data,
-      index + 1
-    );
-  }
-}
-// </ANIMATION CODE>
 
 // <SHAREBAR>
 function openShareBar() {
